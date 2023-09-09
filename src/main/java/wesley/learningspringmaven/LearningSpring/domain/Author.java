@@ -2,6 +2,7 @@ package domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,8 +16,15 @@ public class Author {
     private String lastName;
 
     @ManyToMany(mappedBy = "author")
-    private Set<Book> books;
+    private Set<Books> books = new HashSet<>();
 
+    public Set<Books> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Books> books) {
+        this.books = books;
+    }
 
     public Long getId() {
         return id;

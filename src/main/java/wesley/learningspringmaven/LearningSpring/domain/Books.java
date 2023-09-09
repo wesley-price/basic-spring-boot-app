@@ -2,12 +2,13 @@ package domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
-public class Book {
+public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +18,7 @@ public class Book {
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -56,9 +57,9 @@ public class Book {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Book book)) return false;
+        if (!(o instanceof Books books)) return false;
 
-        return Objects.equals(id, book.id);
+        return Objects.equals(id, books.id);
     }
 
     @Override
